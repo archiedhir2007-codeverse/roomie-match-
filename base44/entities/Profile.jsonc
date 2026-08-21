@@ -1,0 +1,35 @@
+{
+  "name": "Profile",
+  "type": "object",
+  "properties": {
+    "accountId": { "type": "string" },
+    "name": { "type": "string" },
+    "photoUrl": { "type": "string" },
+    "age": { "type": "number" },
+    "genderDetail": { "type": "string", "enum": ["Female", "Male", "Non-binary", "Prefer not to say"] },
+    "city": { "type": "string" },
+    "course": { "type": "string" },
+    "semester": { "type": "string" },
+    "bio": { "type": "string" },
+    "accommodationType": { "type": "string", "enum": ["Hostel", "PG", "Flat"] },
+    "lateNights": { "type": "boolean" },
+    "lightOn": { "type": "boolean" },
+    "coolerAc": { "type": "boolean" },
+    "guests": { "type": "boolean" },
+    "noise": { "type": "boolean" },
+    "preferredFloor": { "type": "string" },
+    "seater": { "type": "string" },
+    "healthIssues": { "type": "string" },
+    "weeklyHolidays": { "type": "array", "items": { "type": "string" } },
+    "nonNegotiables": { "type": "string" },
+    "details": { "type": "object" },
+    "completed": { "type": "boolean", "default": false }
+  },
+  "required": ["accountId", "name", "accommodationType"],
+  "rls": {
+    "read": { "user_condition": { "role": "admin" } },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
