@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
     "@base44/sdk": "*"
   },
   "scripts": {
-    "build": "vite build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   }
 }
