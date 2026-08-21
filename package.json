@@ -6,6 +6,6 @@
     "@base44/sdk": "*"
   },
   "scripts": {
-    "build": "next build"
+    "build": "vite build"
   }
 }
