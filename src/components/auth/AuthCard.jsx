@@ -1,5 +1,4 @@
 
-src/components/auth/AuthCard.jsx
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useRoomieAuth } from '@/lib/roomieAuth';
