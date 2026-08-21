@@ -1,5 +1,4 @@
-Backend — Entities (JSON schemas)
-base44/entities/Account.jsonc
+
 {
   "name": "Account",
   "type": "object",
