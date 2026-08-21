@@ -9,9 +9,12 @@
     "@base44/sdk": "*"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint . --quiet",
+  "lint:fix": "eslint . --fix",
+  "typecheck": "tsc -p ./jsconfig.json",
+  "preview": "vite preview"
   },
   "eslint": {
     "ignoreDuringBuilds": true
