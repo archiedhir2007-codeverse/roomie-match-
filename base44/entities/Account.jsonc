@@ -1,0 +1,24 @@
+Backend — Entities (JSON schemas)
+base44/entities/Account.jsonc
+{
+  "name": "Account",
+  "type": "object",
+  "properties": {
+    "email": { "type": "string", "unique": true },
+    "passwordHash": { "type": "string" },
+    "securityQuestion": { "type": "string" },
+    "securityAnswerHash": { "type": "string" },
+    "gender": { "type": "string", "enum": ["Girl", "Boy"] },
+    "sessionToken": { "type": "string" },
+    "recoverAttempts": { "type": "number", "default": 0 },
+    "lastRecoverAttempt": { "type": "string", "format": "date-time" },
+    "profileCompleted": { "type": "boolean", "default": false }
+  },
+  "required": ["email", "passwordHash", "securityQuestion", "securityAnswerHash", "gender"],
+  "rls": {
+    "read": { "user_condition": { "role": "admin" } },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
