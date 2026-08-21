@@ -1,0 +1,102 @@
+import React from 'react';
+import { Pencil } from 'lucide-react';
+
+function SummaryCard({ title, onEdit, children }) {
+  return (
+    <div className="bg-white rounded-2xl p-4 border border-slate-100">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="font-semibold text-slate-800 text-sm">{title}</h3>
+        <button type="button" onClick={onEdit} className="text-rose-500 text-xs font-medium inline-flex items-center gap-1 hover:underline">
+          <Pencil className="w-3 h-3" /> Edit
+        </button>
+      </div>
+      <div className="text-sm text-slate-600 space-y-1">{children}</div>
+    </div>
+  );
+}
+function Row({ label, value }) {
+  if (!value && value !== 0 && value !== false) return null;
+  const text = value === true ? 'Yes' : value === false ? 'No' : String(value);
+  return <div><span className="text-slate-400">{label}: </span>{text}</div>;
+}
+
+export default function StepPreview({ data, onEdit }) {
+  const d = data.details || {};
+  return (
+    <div className="space-y-4">
+      <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-5 flex items-center gap-4">
+        {data.photoUrl ? (
+          <img src={data.photoUrl} alt="profile" className="w-16 h-16 rounded-full object-cover border-2 border-white shadow" />
+        ) : (
+          <div className="w-16 h-16 rounded-full bg-rose-200" />
+        )}
+        <div>
+          <div className="font-bold text-slate-800 text-lg">{data.name || 'Your name'}</div>
+          <div className="text-sm text-slate-500">
+            {[data.genderDetail, data.course, data.semester && `Sem ${data.semester}`].filter(Boolean).join(' · ')}
+          </div>
+          <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-rose-500 text-white text-xs font-semibold">
+            {data.accommodationType}
+          </span>
+        </div>
+      </div>
+
+      <SummaryCard title="Basic information" onEdit={() => onEdit(0)}>
+        <Row label="City" value={data.city} />
+        <Row label="Course" value={data.course} />
+        <Row label="Semester" value={data.semester} />
+        <Row label="Age" value={data.age} />
+        {data.bio && <Row label="Bio" value={data.bio} />}
+      </SummaryCard>
+
+      <SummaryCard title={`${data.accommodationType} details`} onEdit={() => onEdit(3)}>
+        {data.accommodationType === 'Hostel' && (
+          <>
+            <Row label="Preferred hostel" value={d.preferredHostel} />
+            <Row label="AC/Cooler/Fan" value={d.acCoolerFan} />
+          </>
+        )}
+        {data.accommodationType === 'PG' && (
+          <>
+            <Row label="AC/Non-AC" value={d.acNonAc} />
+            <Row label="Owner on-site" value={d.ownerOnSite} />
+            <Row label="Attached bathroom" value={d.attachedBathroom} />
+            <Row label="Tiffin/Maid" value={d.tiffinMaid} />
+            <Row label="Bill split" value={d.billSplit} />
+            <Row label="Work timings" value={d.workTimings} />
+          </>
+        )}
+        {data.accommodationType === 'Flat' && (
+          <>
+            <Row label="Locality" value={d.locality} />
+            <Row label="Furnished" value={d.furnished} />
+            {d.appliances && d.appliances.length > 0 && <Row label="Appliances" value={d.appliances.join(', ')} />}
+            <Row label="Work/study timings" value={d.workTimings} />
+          </>
+        )}
+      </SummaryCard>
+
+      <SummaryCard title="Lifestyle & compatibility" onEdit={() => onEdit(2)}>
+        <Row label="Roommate stays up late" value={data.lateNights} />
+        <Row label="Light on late" value={data.lightOn} />
+        <Row label="Cooler/AC okay" value={data.coolerAc} />
+        <Row label="Guests allowed" value={data.guests} />
+        <Row label="Comfortable with noise" value={data.noise} />
+      </SummaryCard>
+
+      <SummaryCard title="Personal preferences" onEdit={() => onEdit(2)}>
+        <Row label="Preferred floor" value={data.preferredFloor} />
+        <Row label="Seater" value={data.seater} />
+      </SummaryCard>
+
+      <SummaryCard title="Health & routine" onEdit={() => onEdit(2)}>
+        <Row label="Health issues" value={data.healthIssues} />
+        {data.weeklyHolidays && data.weeklyHolidays.length > 0 && <Row label="Holidays" value={data.weeklyHolidays.join(', ')} />}
+      </SummaryCard>
+
+      <SummaryCard title="Non-negotiables" onEdit={() => onEdit(2)}>
+        {data.nonNegotiables ? <div>{data.nonNegotiables}</div> : <div className="text-slate-400">Not specified</div>}
+      </SummaryCard>
+    </div>
+  );
+}
