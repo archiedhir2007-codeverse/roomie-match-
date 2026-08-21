@@ -1,0 +1,16 @@
+{
+  "name": "PhoneNumber",
+  "type": "object",
+  "properties": {
+    "matchId": { "type": "string" },
+    "accountId": { "type": "string" },
+    "number": { "type": "string" }
+  },
+  "required": ["matchId", "accountId", "number"],
+  "rls": {
+    "read": { "user_condition": { "role": "admin" } },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
