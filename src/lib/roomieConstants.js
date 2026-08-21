@@ -1,5 +1,4 @@
 
-src/lib/roomieConstants.js
 export const AVATARS = [
   'https://media.base44.com/images/public/6a88053a6d6e6dbc5855290e/fbe0e9ed1_generated_image.png',
   'https://media.base44.com/images/public/6a88053a6d6e6dbc5855290e/84dc99eca_generated_image.png',
