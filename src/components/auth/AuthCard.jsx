@@ -57,8 +57,7 @@ export default function AuthCard() {
       const res = await base44.functions.invoke('roomie_recover_question', { email });
       setRecoveredQuestion(res.data.question);
       setForgotStep('answer');
-    } catch (err) { setError(err.response?.data?.error || 'Could not
- find account'); }
+    } catch (err) { setError(err.response?.data?.error || 'Could not find account'); }
     finally { setLoading(false); }
   };
 
