@@ -1,0 +1,16 @@
+{
+  "name": "Swipe",
+  "type": "object",
+  "properties": {
+    "swiperAccountId": { "type": "string" },
+    "targetProfileId": { "type": "string" },
+    "action": { "type": "string", "enum": ["like", "pass"] }
+  },
+  "required": ["swiperAccountId", "targetProfileId", "action"],
+  "rls": {
+    "read": { "user_condition": { "role": "admin" } },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
